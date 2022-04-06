@@ -24,12 +24,13 @@
 <!--     View Resolver
     <bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
- -->    <bean
+ -->    
+ <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-        <property name="prefix" value="" />
+        <property name="prefix" value="/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
- 
+
     <!-- DataSource -->
     <!-- <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
         <property name="driverClassName" value="${jdbc.driver}"></property>
