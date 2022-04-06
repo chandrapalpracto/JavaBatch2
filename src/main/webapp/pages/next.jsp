@@ -26,15 +26,11 @@ tr:nth-child(even) {
 
 <table>
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th>Task</th>
   </tr>
   <c:forEach var = "x" items="${ list }">
   <tr>
     <td>    ${x.m1 }</td>
-    <td>    ${x.m2 }</td>
-    <td>     ${x.m1 }</td>
   </tr>
 </c:forEach>
   
