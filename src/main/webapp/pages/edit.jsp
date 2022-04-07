@@ -20,26 +20,27 @@
 		</h1>
 		<br/><br/>
 		<div class="row">
-			<form class="form-inline col-sm-offset-3" action="inserttask">
+			<form class="form-inline col-sm-offset-3" action="updatetask">
 				<div class="input-group">
 					<span class="input-group-addon">
 					<i class="glyphicon glyphicon-pencil"></i>
+					<input type="hidden" value=${task.id } name ="id"/>
 					</span>
 					<input type="text" class="form-control"
 						placeholder="todo-item"
-						id="box" name="task" style="width: 30vw" />
+						id="box" name="task" value= ${task.task } style="width: 30vw" />
 				</div>
 				
 								<div class="input-group">
 					<input type="text" class="form-control"
 						placeholder="todo-item-description"
-						id="box" name="taskDesc" style="width: 30vw" />
+						id="box" name="taskDesc" value="${task.taskDesc }" style="width: 30vw" />
 				</div>
 				
 				<div class="form-group">
 					<input type="submit"
 						class="btn btn-primary form-control"
-						value="add" style="width: 10vw"
+						value="Update" style="width: 10vw"
 						 />
 				</div>
 			</form>

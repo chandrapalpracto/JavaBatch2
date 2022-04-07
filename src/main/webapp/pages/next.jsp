@@ -26,11 +26,23 @@ tr:nth-child(even) {
 
 <table>
   <tr>
+      <th>S. No</th>
     <th>Task</th>
+    <th>Task Description</th>
+        <th>Action</th>
   </tr>
   <c:forEach var = "x" items="${ list }">
   <tr>
-    <td>    ${x.m1 }</td>
+        <td>    ${x.id }</td>
+    <td>    ${x.task }</td>
+        <td>    ${x.taskDesc }</td>
+        <form action="edit">
+        <input type="hidden" name ="id" value=" ${x.id }"/>
+         <input type="hidden" name ="task" value= " ${x.task }"/>
+                 <input type="hidden" name ="taskDesc" value= " ${x.taskDesc }"/>
+        <td><input type="submit" value="Update"/></td>
+        </form>
+
   </tr>
 </c:forEach>
   

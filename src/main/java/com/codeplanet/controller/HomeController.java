@@ -17,6 +17,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.codepanet.model.Task;
+
 @Controller
 public class HomeController {
 	
@@ -27,39 +29,52 @@ public class HomeController {
 	public String xyz() {
       return "home";
 	}
-	
+	@GetMapping("/edit")
+	public String edit(HttpServletRequest req, Task task) {
+		req.setAttribute("task", task);
+		return "edit";
+	}
 	@GetMapping("/inserttask")
-	public String inserttask(HttpServletRequest req,String todoitem) throws ClassNotFoundException, SQLException {
+	public String inserttask(HttpServletRequest req,Task task) throws ClassNotFoundException, SQLException {
 		/*
 		 * Class.forName("com.mysql.jdbc.Driver"); //1 
 		 * Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaapp",
 		 * "test","Admin123@"); //2
 		 */      
 	  Connection con = jdbcTemplate.getDataSource().getConnection();
+	  String desc = req.getParameter("todoitemdesc");
 	  
 		/*
 		 * String query = "insert into task values('"+ todoitem + "')"; 
 		 * Statement stmt = con.createStatement(); //3 
 		 * int i = stmt.executeUpdate(query); /
 		 */
-	  String query = "insert into task values(?)";
+	  String query = "insert into newtask(task,task_desc) values(?,?)";
 	  PreparedStatement ps = con.prepareStatement(query);
 		/* CallableStatement ps = con.prepareCall("call sp(?,?)"); */
 
-	  ps.setString(1, todoitem);
+	  ps.setString(1, task.getTask());
+	  ps.setString(2, task.getTaskDesc());
       int i = ps.executeUpdate(); //5
-      String query1= "select * from task";
+      String query1= "select * from newtask";
       PreparedStatement ps1 = con.prepareStatement(query1);
       ResultSet rs = ps1.executeQuery();
       List l = new ArrayList();
       while (rs.next()) {
-    	  Map m = new HashMap();
-    	  m.put("m1", rs.getString("todoitem"));
-    	  l.add(m);
+//    	  Map m = new HashMap();
+//    	  m.put("task", rs.getString("task"));
+//    	  m.put("id", rs.getInt("id"));
+//    	  m.put("taskDesc", rs.getString("task_desc"));
+    	  Task t = new Task();
+    	  t.setId(rs.getInt("id"));
+    	  t.setTask(rs.getString("task"));
+    	  t.setTaskDesc(rs.getString("task_desc"));
+    	  l.add(t);
       }
       req.setAttribute("list", l);
 	  return "next";
 	}
+
 	
 	@GetMapping("/createTask")
 	public String createTask(HttpServletRequest req, HttpServletResponse res, String test) {
