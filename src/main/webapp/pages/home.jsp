@@ -20,7 +20,7 @@
 		</h1>
 		<br/><br/>
 		<div class="row">
-			<form class="form-inline col-sm-offset-3" action="inserttask">
+			<form class="form-inline col-sm-offset-3" action="inserttask" method="post">
 				<div class="input-group">
 					<span class="input-group-addon">
 					<i class="glyphicon glyphicon-pencil"></i>

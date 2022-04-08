@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.codepanet.model.Task;
 
@@ -34,7 +35,7 @@ public class HomeController {
 		req.setAttribute("task", task);
 		return "edit";
 	}
-	@GetMapping("/inserttask")
+	@PostMapping("/inserttask")
 	public String inserttask(HttpServletRequest req,Task task) throws ClassNotFoundException, SQLException {
 		/*
 		 * Class.forName("com.mysql.jdbc.Driver"); //1 
